@@ -1,0 +1,17 @@
+# Application YAML (edit values below to match your local MySQL)
+spring:
+  datasource:
+    # JDBC URL format: jdbc:mysql://<host>:<port>/<database>?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/CatalogService
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:1234}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none    # managed by Flyway
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+server:
+  port: 8081
