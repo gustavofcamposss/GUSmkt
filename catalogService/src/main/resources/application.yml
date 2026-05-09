@@ -1,17 +1,24 @@
-# Application YAML (edit values below to match your local MySQL)
+server:
+  port: 9090
+
 spring:
   datasource:
-    # JDBC URL format: jdbc:mysql://<host>:<port>/<database>?useSSL=false&serverTimezone=UTC
-    url: jdbc:mysql://${DB_HOST:db}:${DB_PORT:3306}/CatalogService?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: ${DB_USER:root}
-    password: ${DB_PASSWORD:1234}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: 123456
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
   jpa:
     hibernate:
-      ddl-auto: none    # managed by Flyway
-    show-sql: false
-    properties:
-      hibernate:
-        format_sql: false
-server:
-  port: 8081
+      ddl-auto: create
+    defer-datasource-initialization: true
+    show-sql: true
+
+  sql:
+    init:
+      mode: always
